@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Forseti</string>
+    <string name="vote_sent">Vote hase been sent</string>
+    <string name="account_number">Bank account number</string>
 </resources>
