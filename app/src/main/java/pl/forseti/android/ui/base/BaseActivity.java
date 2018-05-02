@@ -14,7 +14,6 @@ public class BaseActivity extends AppCompatActivity {
         if (addToBackStack)
             transaction.addToBackStack(null);
         transaction.commit();
-
     }
 
 }
