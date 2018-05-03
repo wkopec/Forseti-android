@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import pl.forseti.android.R;
+import pl.forseti.android.ui.authorization.login.LoginFragment;
 import pl.forseti.android.ui.authorization.signup.SignupFragment;
 import pl.forseti.android.ui.base.BaseActivity;
 import pl.forseti.android.ui.vote.VoteFragment;
@@ -16,7 +17,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_empty);
 
         //replaceFragment(new VoteFragment(), true);
-        replaceFragment(new SignupFragment(), true);
+        replaceFragment(new LoginFragment(), true);
 
 
     }

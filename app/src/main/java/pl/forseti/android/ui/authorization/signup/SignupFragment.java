@@ -26,8 +26,8 @@ public class SignupFragment extends Fragment implements SignupContract.View{
     private SignupContract.Presenter presenter;
     private MainActivity activity;
 
-    @BindView(R.id.login)
-    EditText login;
+    @BindView(R.id.username)
+    EditText username;
 
     @BindView(R.id.password)
     EditText password;
@@ -44,7 +44,7 @@ public class SignupFragment extends Fragment implements SignupContract.View{
 
     @OnClick(R.id.signup)
     public void onSignupClick() {
-        presenter.signup(new LoginRequest(login.getText().toString(), password.getText().toString()));
+        presenter.signup(new LoginRequest(username.getText().toString(), password.getText().toString()));
     }
 
     @Override
