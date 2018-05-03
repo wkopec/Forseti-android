@@ -15,8 +15,8 @@ import butterknife.OnClick;
 import pl.forseti.android.R;
 import pl.forseti.android.models.LoginRequest;
 import pl.forseti.android.ui.MainActivity;
+import pl.forseti.android.ui.account_number.AccountNumberFragment;
 import pl.forseti.android.ui.authorization.signup.SignupFragment;
-import pl.forseti.android.ui.vote.VoteFragment;
 
 /**
  * Created by Wojtek on 03.05.2018.
@@ -65,6 +65,6 @@ public class LoginFragment extends Fragment implements LoginContract.View{
     @Override
     public void proceedToLoggedIn() {
         activity.onBackPressed();
-        activity.replaceFragment(new VoteFragment(), true);
+        activity.replaceFragment(new AccountNumberFragment(), true);
     }
 }
