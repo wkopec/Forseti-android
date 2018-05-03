@@ -1,4 +1,4 @@
-package pl.forseti.android.api;
+package pl.forseti.android.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -13,9 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
-import pl.forseti.android.api.LoginRequest;
+import pl.forseti.android.models.LoginRequest;
 import pl.forseti.android.ui.MainActivity;
-import pl.forseti.android.ui.vote.VoteFragment;
+import pl.forseti.android.ui.authorization.login.LoginFragment;
 
 /**
  * Created by Wojtek on 03.05.2018.
@@ -60,6 +60,6 @@ public class SignupFragment extends Fragment implements SignupContract.View{
     @Override
     public void proceedToLogin() {
         activity.onBackPressed();
-        activity.replaceFragment(new VoteFragment(), true);
+        activity.replaceFragment(new LoginFragment(), true);
     }
 }

@@ -1,6 +1,6 @@
 package pl.forseti.android.ui.authorization.signup;
 
-import pl.forseti.android.api.LoginRequest;
+import pl.forseti.android.models.LoginRequest;
 
 /**
  * Created by Wojtek on 03.05.2018.

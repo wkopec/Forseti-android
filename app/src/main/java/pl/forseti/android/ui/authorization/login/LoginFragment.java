@@ -7,16 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
-import pl.forseti.android.api.LoginRequest;
+import pl.forseti.android.models.LoginRequest;
 import pl.forseti.android.ui.MainActivity;
 import pl.forseti.android.ui.authorization.signup.SignupFragment;
-import pl.forseti.android.ui.vote.VoteContract;
-import pl.forseti.android.ui.vote.VotePresenter;
+import pl.forseti.android.ui.vote.VoteFragment;
 
 /**
  * Created by Wojtek on 03.05.2018.
@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment implements LoginContract.View{
         View view = inflater.inflate(R.layout.fragment_login, null);
         ButterKnife.bind(this, view);
         activity = (MainActivity) getActivity();
-        presenter = new LoginPresenter(this);
+        presenter = new LoginPresenter(this, activity);
         return view;
     }
 
@@ -54,16 +54,17 @@ public class LoginFragment extends Fragment implements LoginContract.View{
 
     @Override
     public void showToast(int message) {
-
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showToast(String message) {
-
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void proceedToLoggedIn() {
-
+        activity.onBackPressed();
+        activity.replaceFragment(new VoteFragment(), true);
     }
 }

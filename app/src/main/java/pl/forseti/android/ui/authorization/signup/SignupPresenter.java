@@ -2,7 +2,7 @@ package pl.forseti.android.ui.authorization.signup;
 
 import pl.forseti.android.R;
 import pl.forseti.android.api.ForsetiApi;
-import pl.forseti.android.api.LoginRequest;
+import pl.forseti.android.models.LoginRequest;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,9 +25,16 @@ public class SignupPresenter implements SignupContract.Presenter{
         ForsetiApi.service().signup(account).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.body() != null) {
-                    view.showToast(R.string.signed_up);
-                    view.proceedToLogin();
+                switch (response.code()) {
+                    case 200:
+                        view.showToast(R.string.signed_up);
+                        view.proceedToLogin();
+                        break;
+                    case 409:
+                        view.showToast(R.string.user_already_exist);
+                        break;
+                    default:
+                        view.showToast(R.string.something_went_wrong);
                 }
             }
 
