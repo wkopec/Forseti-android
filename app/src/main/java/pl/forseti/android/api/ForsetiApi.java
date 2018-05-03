@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForsetiApi {
 
-    public static final String API_BASE_URL = "77.55.213.42/";
+    public static final String API_BASE_URL = "http://77.55.213.42:8080/";
 
     public static ApiService service(){
         Retrofit retrofit = new Retrofit.Builder()
