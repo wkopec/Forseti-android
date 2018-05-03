@@ -18,6 +18,10 @@ public class SignupContract {
 
         void showToast(int message);
 
+        void showToast(String message);
+
+        void proceedToLogin();
+
     }
 
 }
