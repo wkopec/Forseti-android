@@ -5,4 +5,9 @@
     <string name="search">Szukaj</string>
     <string name="profile">Profil</string>
     <string name="search_number">Szukaj numeru</string>
+    <string name="signed_up">Signed up successfully</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="user_already_exist">User already exist</string>
+    <string name="invalid_username_or_password">Invalid username or password</string>
+    <string name="logged_in_successfully">Logged in successfully</string>
 </resources>

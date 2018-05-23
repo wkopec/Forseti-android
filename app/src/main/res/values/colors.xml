@@ -10,10 +10,9 @@
     <color name="pink">#B643B4</color>
     <color name="darkBlue">#1651AB</color>
     <color name="blue">#216DBC</color>
-    <color name="white">#fff</color>
     <color name="gray">#949494</color>
     <color name="gray_hint">#b3b3b3</color>
-
+    <color name="white">#FAFAFA</color>
 
 
     #B643B4 #216DBC #1651AB
