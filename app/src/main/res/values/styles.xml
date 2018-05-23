@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackground">@color/white</item>
+        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+        <item name="searchSuggestionBackground">@android:color/white</item>
+        <item name="android:textColorHint">@color/gray_hint</item>
+        <item name="android:hint">@string/search_number</item>
+    </style>
+
 </resources>

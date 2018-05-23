@@ -4,7 +4,17 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
     <color name="red">#b70926</color>
     <color name="green">#32bf07</color>
+    <color name="pink">#B643B4</color>
+    <color name="darkBlue">#1651AB</color>
+    <color name="blue">#216DBC</color>
+    <color name="white">#fff</color>
+    <color name="gray">#949494</color>
+    <color name="gray_hint">#b3b3b3</color>
 
+
+
+    #B643B4 #216DBC #1651AB
 </resources>

@@ -39,4 +39,5 @@ public class VoteFragment extends Fragment implements VoteContract.View {
     public void showToast(int message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
+
 }

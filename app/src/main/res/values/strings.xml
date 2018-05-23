@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Forseti</string>
-    <string name="vote_sent">Vote hase been sent</string>
+    <string name="vote_sent">Vote has been sent</string>
     <string name="account_number">Bank account number</string>
+    <string name="search">Szukaj</string>
+    <string name="profile">Profil</string>
+    <string name="search_number">Szukaj numeru</string>
 </resources>
