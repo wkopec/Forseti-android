@@ -11,7 +11,6 @@ public class VoteContract {
     public interface View {
 
         void showToast(int message);
-
     }
 
 }

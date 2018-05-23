@@ -3,14 +3,17 @@ package pl.forseti.android.ui.account_number;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,20 +27,16 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     private AccountNumberContract.Presenter presenter;
     private MainActivity activity;
 
-    @BindView(R.id.accountBankNumber)
-    EditText accountBankNumber;
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.search_view)
+    MaterialSearchView searchView;
     @BindView(R.id.mask)
     View mask;
-
     @BindView(R.id.bankAccount)
     TextView bankAccount;
-
     @BindView(R.id.thumbsUp)
     TextView thumbsUp;
-
-    @BindView(R.id.thumbsDown)
-    TextView thumbsDown;
 
     @Nullable
     @Override
@@ -45,22 +44,11 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         View view = inflater.inflate(R.layout.fragment_account_number, null);
         ButterKnife.bind(this, view);
         activity = (MainActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
         presenter = new AccountNumberPresenter(this);
+        setHasOptionsMenu(true);
         setSearchView();
         return view;
-    }
-
-    private void setSearchView() {
-        accountBankNumber.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    presenter.getAccountNumberInfo(accountBankNumber.getText().toString());
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     @OnClick(R.id.thumbUp)
@@ -76,8 +64,8 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     @Override
     public void setBankAccountInfo(AccountNumber accountNumber) {
         bankAccount.setText(accountNumber.getAccountNumber());
-        thumbsUp.setText(String.format("Thumbs up: %s", accountNumber.getThumbsUp()));
-        thumbsDown.setText(String.format("Thumbs down: %s", accountNumber.getThumbsDown()));
+        thumbsUp.setText(String.valueOf(accountNumber.getThumbsUp() - accountNumber.getThumbsDown()));
+        //thumbsDown.setText(String.format("Thumbs down: %s", accountNumber.getThumbsDown()));
         mask.setVisibility(View.GONE);
     }
 
@@ -85,4 +73,37 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     public void showToast(int message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
+
+    private void setSearchView(){
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                presenter.getAccountNumberInfo(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+            }
+        });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        activity.getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+    }
+
 }

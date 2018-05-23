@@ -4,82 +4,142 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/accountBankNumber"
+    <include
+        android:id="@+id/searchBar"
+        layout="@layout/search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:drawableEnd="@drawable/ic_search"
-        android:hint="@string/account_number"
-        android:imeOptions="actionSearch"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/card_gradient"
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="12dp">
+    </View>
+
+    <TextView
+        android:id="@+id/BankName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bank Zachodni WBK"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/card"
+        app:layout_constraintHorizontal_bias="0.00"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/card" />
 
     <TextView
         android:id="@+id/bankAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="20dp"
         android:text="65465468161 651651 651651 6164165"
+        android:textColor="@color/gray_text"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/accountBankNumber" />
+        app:layout_constraintBottom_toBottomOf="@+id/card"
+        app:layout_constraintEnd_toEndOf="@+id/card"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        app:layout_constraintTop_toTopOf="@+id/card"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <TextView
+        android:id="@+id/bankAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ul. Zachodznia 45, 36-200 Warszawa"
+        android:layout_margin="10dp"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        app:layout_constraintBottom_toBottomOf="@+id/card"/>
+
+    <ImageView
+        android:id="@+id/thumbUp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_thumb_up"
+        android:tint="@color/green"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        app:layout_constraintStart_toStartOf="@id/card" />
 
     <TextView
         android:id="@+id/thumbsUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Thumbs up: 6"
-        app:layout_constraintEnd_toStartOf="@id/thumbsDown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bankAccount" />
-
-    <TextView
-        android:id="@+id/thumbsDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Thumbs down: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thumbsUp"
-        app:layout_constraintTop_toBottomOf="@id/bankAccount" />
-
-    <ImageView
-        android:id="@+id/thumbUp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_thumb_up"
-        android:tint="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/thumbDown"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="6"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/thumbUp"
+        app:layout_constraintTop_toTopOf="@id/thumbUp"
+        app:layout_constraintBottom_toBottomOf="@+id/thumbUp"/>
 
     <ImageView
         android:id="@+id/thumbDown"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/ic_thumb_down"
         android:tint="@color/red"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/thumbsUp"
+        app:layout_constraintTop_toBottomOf="@id/card" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_comments"
+        android:drawablePadding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thumbUp" />
+        app:layout_constraintTop_toBottomOf="@id/card" />
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_send"
+        app:layout_constraintEnd_toEndOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@id/card"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/commentsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/comments"
+        android:layout_marginTop="20dp">
+
+    </android.support.v7.widget.RecyclerView>
 
     <View
         android:id="@+id/mask"
-        android:layout_width="99999dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/white"
+        android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/accountBankNumber" />
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        android:visibility="gone"/>
 
 </android.support.constraint.ConstraintLayout>
