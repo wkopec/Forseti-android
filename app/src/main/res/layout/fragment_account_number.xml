@@ -126,9 +126,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/comments"
-        android:layout_marginTop="20dp">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_margin="12dp"
+        android:layout_marginTop="20dp"/>
 
     <View
         android:id="@+id/mask"

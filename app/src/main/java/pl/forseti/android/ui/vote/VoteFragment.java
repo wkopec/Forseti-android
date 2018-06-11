@@ -8,14 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
-import pl.forseti.android.models.events.SearchBankAccountEvent;
 
 public class VoteFragment extends Fragment implements VoteContract.View {
 

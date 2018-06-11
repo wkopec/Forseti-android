@@ -16,6 +16,7 @@ public class ForsetiApi {
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor(new AuthorizationInterceptor())
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
