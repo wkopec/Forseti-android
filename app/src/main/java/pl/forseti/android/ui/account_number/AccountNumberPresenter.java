@@ -3,6 +3,7 @@ package pl.forseti.android.ui.account_number;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.ViewOutlineProvider;
 
 import java.util.List;
 
@@ -27,8 +28,22 @@ public class AccountNumberPresenter implements AccountNumberContract.Presenter {
     }
 
     @Override
-    public void sendVote(boolean isPositive) {
-        view.showToast(R.string.vote_sent);
+    public void sendVote(String accountNumber, final String thumb) {
+        ForsetiApi.service().sendThumb(accountNumber, thumb).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    view.showToast(R.string.vote_sent);
+                    view.setThumb(thumb);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("FAIL", t.getMessage());
+            }
+        });
+
     }
 
     @Override

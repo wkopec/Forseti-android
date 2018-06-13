@@ -13,6 +13,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -27,5 +28,8 @@ public interface ApiService {
 
     @PUT("/api/accountNumber/comment/{number}")
     Call<Void> sendComments(@Path(value = "number", encoded = true) String number, @Body String comment);
+
+    @PUT("/api/accountNumber/thumb/{number}")
+    Call<Void> sendThumb(@Path(value = "number", encoded = true) String number, @Query("thumb") String thumb);
 
 }

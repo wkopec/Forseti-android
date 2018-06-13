@@ -6,9 +6,9 @@ public class AccountNumberContract {
 
     public interface Presenter {
 
-        void sendVote(boolean isPositive);
-
         void getAccountNumberInfo(String accountNumber);
+
+        void sendVote(String accountNumber, String thumb);
 
         void sendComment(String accountNumber, String comment);
 
@@ -19,6 +19,8 @@ public class AccountNumberContract {
         void setBankAccountInfo(AccountNumber accountNumber);
 
         void showToast(int message);
+
+        void setThumb(String thumb);
 
     }
 

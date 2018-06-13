@@ -36,7 +36,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'me.grantland:autofittextview:0.2.+'
-
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

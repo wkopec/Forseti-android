@@ -16,4 +16,10 @@ public class BaseActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }
