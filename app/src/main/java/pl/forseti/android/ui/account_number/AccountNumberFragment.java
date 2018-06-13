@@ -3,6 +3,8 @@ package pl.forseti.android.ui.account_number;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,14 +17,11 @@ import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
 import pl.forseti.android.models.AccountNumber;
-import pl.forseti.android.models.Comment;
 import pl.forseti.android.ui.MainActivity;
 
 public class AccountNumberFragment extends Fragment implements AccountNumberContract.View {
@@ -38,8 +37,15 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     View mask;
     @BindView(R.id.bankAccount)
     TextView bankAccount;
+    @BindView(R.id.comments)
+    TextView comments;
     @BindView(R.id.thumbsUp)
     TextView thumbsUp;
+    @BindView(R.id.commentsRecyclerView)
+    RecyclerView commentsRecyclerView;
+
+
+
 
     @Nullable
     @Override
@@ -68,7 +74,13 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     public void setBankAccountInfo(AccountNumber accountNumber) {
         bankAccount.setText(accountNumber.getAccountNumber());
         thumbsUp.setText(String.valueOf(accountNumber.getThumbsUp() - accountNumber.getThumbsDown()));
-        //thumbsDown.setText(String.format("Thumbs down: %s", accountNumber.getThumbsDown()));
+        comments.setText(String.valueOf(accountNumber.getCommentsResponse().getComments().size()));
+
+        commentsRecyclerView.setAdapter(new CommentAdapter(accountNumber.getCommentsResponse().getComments(), activity));
+        LinearLayoutManager manager = new LinearLayoutManager(activity);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        commentsRecyclerView.setLayoutManager(manager);
+
         mask.setVisibility(View.GONE);
     }
 

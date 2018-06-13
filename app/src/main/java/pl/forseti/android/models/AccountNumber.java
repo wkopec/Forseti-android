@@ -37,7 +37,7 @@ public class AccountNumber {
         return thumbsUp;
     }
 
-    public CommentsResponse getComments() {
+    public CommentsResponse getCommentsResponse() {
         return comments;
     }
 }
