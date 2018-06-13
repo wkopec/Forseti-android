@@ -3,8 +3,6 @@ package pl.forseti.android.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
  * Created by Wojtek on 03.05.2018.
  */
@@ -25,7 +23,7 @@ public class AccountNumber {
 
     @SerializedName("comments")
     @Expose
-    private List<Comment> comments;
+    private CommentsResponse comments;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -37,5 +35,9 @@ public class AccountNumber {
 
     public int getThumbsUp() {
         return thumbsUp;
+    }
+
+    public CommentsResponse getComments() {
+        return comments;
     }
 }

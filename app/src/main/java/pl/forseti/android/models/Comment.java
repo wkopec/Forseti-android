@@ -3,15 +3,60 @@ package pl.forseti.android.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Volfram on 24.05.2018.
- */
+import java.util.Date;
 
 public class Comment {
 
-    @SerializedName("accountNumber")
+    private String username;
+
+    @SerializedName("comment")
     @Expose
-    private String accountNumber;
+    private String comment;
 
+    @SerializedName("is")
+    @Expose
+    private int id;
 
+    @SerializedName("timeStamp")
+    @Expose
+    private Date timeStamp;
+
+    public Comment(String username, String comment, int id, Date timeStamp) {
+        this.username = username;
+        this.comment = comment;
+        this.id = id;
+        this.timeStamp = timeStamp;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Date timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 }

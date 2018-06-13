@@ -10,6 +10,8 @@ public class AccountNumberContract {
 
         void getAccountNumberInfo(String accountNumber);
 
+        void sendComment(String accountNumber, String comment);
+
     }
 
     public interface View {

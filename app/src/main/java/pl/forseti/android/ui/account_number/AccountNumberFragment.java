@@ -15,11 +15,14 @@ import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
 import pl.forseti.android.models.AccountNumber;
+import pl.forseti.android.models.Comment;
 import pl.forseti.android.ui.MainActivity;
 
 public class AccountNumberFragment extends Fragment implements AccountNumberContract.View {

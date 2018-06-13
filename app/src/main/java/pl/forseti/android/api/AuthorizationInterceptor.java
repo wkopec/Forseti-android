@@ -25,8 +25,7 @@ public class AuthorizationInterceptor implements Interceptor {
 
     private String getAuthorizationString() {
         SharedPreferences sharedPreferences = FirsetiApp.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        String authorizationToken = sharedPreferences.getString(AUTHORIZATION, "");
-        return authorizationToken;
+        return sharedPreferences.getString(AUTHORIZATION, "");
     }
 
 }
