@@ -18,10 +18,6 @@ import pl.forseti.android.ui.MainActivity;
 import pl.forseti.android.ui.account_number.AccountNumberFragment;
 import pl.forseti.android.ui.authorization.signup.SignupFragment;
 
-/**
- * Created by Wojtek on 03.05.2018.
- */
-
 public class LoginFragment extends Fragment implements LoginContract.View{
 
     private LoginContract.Presenter presenter;
@@ -47,6 +43,7 @@ public class LoginFragment extends Fragment implements LoginContract.View{
     public void onLoginClick() {
         presenter.login(new LoginRequest(username.getText().toString(), password.getText().toString()));
     }
+
     @OnClick(R.id.signup)
     public void onSignupClick() {
         activity.replaceFragment(new SignupFragment(), true);

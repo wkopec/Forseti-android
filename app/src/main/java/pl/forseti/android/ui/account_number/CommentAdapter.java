@@ -17,10 +17,6 @@ import pl.forseti.android.utils.ParseDate;
 
 import static pl.forseti.android.utils.ParseDate.DATE_PATTERN_READABLE;
 
-/**
- * Created by Volfram on 13.06.2018.
- */
-
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
     private List<Comment> comments;

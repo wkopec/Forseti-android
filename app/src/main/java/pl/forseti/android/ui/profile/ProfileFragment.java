@@ -1,5 +1,7 @@
 package pl.forseti.android.ui.profile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,8 +17,14 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.forseti.android.R;
+import pl.forseti.android.models.Profile;
 import pl.forseti.android.ui.MainActivity;
+import pl.forseti.android.ui.authorization.login.LoginFragment;
+
+import static pl.forseti.android.utils.Constants.AUTHORIZATION;
+import static pl.forseti.android.utils.Constants.PREFS;
 
 public class ProfileFragment extends Fragment implements ProfileContract.View {
 
@@ -39,7 +47,17 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         setToolbar();
         presenter = new ProfilePresenter(this);
         setHasOptionsMenu(true);
+        presenter.getProfileInfo();
         return view;
+    }
+
+    @OnClick(R.id.logout)
+    public void onLogoutClick() {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(AUTHORIZATION, "");
+        editor.apply();
+        activity.replaceFragment(new LoginFragment(), true);
     }
 
     private void setToolbar(){
@@ -51,4 +69,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         activity.getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
+    @Override
+    public void setUserData(Profile profile) {
+        username.setText(profile.getUsername());
+    }
 }

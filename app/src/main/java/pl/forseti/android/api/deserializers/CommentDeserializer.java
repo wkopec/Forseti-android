@@ -1,6 +1,4 @@
-package pl.forseti.android.api;
-
-import android.support.annotation.Nullable;
+package pl.forseti.android.api.deserializers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;

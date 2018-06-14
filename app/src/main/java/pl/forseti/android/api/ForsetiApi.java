@@ -1,13 +1,13 @@
 package pl.forseti.android.api;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import pl.forseti.android.models.AccountNumber;
-import pl.forseti.android.models.Comment;
+import pl.forseti.android.api.deserializers.CommentDeserializer;
+import pl.forseti.android.api.deserializers.ThumbsDeserializer;
 import pl.forseti.android.models.CommentsResponse;
+import pl.forseti.android.models.ThumbsResponse;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -39,6 +39,7 @@ public class ForsetiApi {
         return GsonConverterFactory.create(new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm")
                 .registerTypeAdapter(CommentsResponse.class, new CommentDeserializer())
+                .registerTypeAdapter(ThumbsResponse.class, new ThumbsDeserializer())
                 .create());
     }
 

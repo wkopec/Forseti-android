@@ -6,6 +6,7 @@ import pl.forseti.android.models.AccountNumber;
 import pl.forseti.android.models.Comment;
 import pl.forseti.android.models.LoginRequest;
 import pl.forseti.android.models.LoginResponse;
+import pl.forseti.android.models.Profile;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -31,5 +32,10 @@ public interface ApiService {
 
     @PUT("/api/accountNumber/thumb/{number}")
     Call<Void> sendThumb(@Path(value = "number", encoded = true) String number, @Query("thumb") String thumb);
+
+    @GET("/api/user/")
+    Call<Profile> getProfileInfo();
+
+
 
 }
