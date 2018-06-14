@@ -22,7 +22,7 @@ public class AccountNumberContract {
 
         void showToast(int message);
 
-        void setThumb(String thumb);
+        void setThumb(String thumb, boolean refreashView);
 
     }
 

@@ -3,20 +3,15 @@ package pl.forseti.android.ui.account_number;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.ViewOutlineProvider;
-
-import java.util.List;
 
 import pl.forseti.android.FirsetiApp;
 import pl.forseti.android.R;
 import pl.forseti.android.api.ForsetiApi;
 import pl.forseti.android.models.AccountNumber;
-import pl.forseti.android.models.Comment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static pl.forseti.android.utils.Constants.AUTHORIZATION;
 import static pl.forseti.android.utils.Constants.PREFS;
 
 public class AccountNumberPresenter implements AccountNumberContract.Presenter {
@@ -34,7 +29,7 @@ public class AccountNumberPresenter implements AccountNumberContract.Presenter {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     view.showToast(R.string.vote_sent);
-                    view.setThumb(thumb);
+                    view.setThumb(thumb, true);
                 }
             }
 

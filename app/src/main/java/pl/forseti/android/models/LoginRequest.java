@@ -21,4 +21,8 @@ public class LoginRequest {
         this.username = username;
         this.password = password;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }

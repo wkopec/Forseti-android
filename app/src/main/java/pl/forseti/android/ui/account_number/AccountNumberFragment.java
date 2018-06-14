@@ -1,6 +1,7 @@
 package pl.forseti.android.ui.account_number;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,11 +29,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.forseti.android.R;
 import pl.forseti.android.models.AccountNumber;
+import pl.forseti.android.models.ThumbDetail;
 import pl.forseti.android.ui.MainActivity;
 import pl.forseti.android.ui.profile.ProfileFragment;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static pl.forseti.android.utils.Constants.AUTHORIZATION;
+import static pl.forseti.android.utils.Constants.PREFS;
+import static pl.forseti.android.utils.Constants.USERNAME;
 
 public class AccountNumberFragment extends Fragment implements AccountNumberContract.View {
 
@@ -107,6 +112,15 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         commentsRecyclerView.setLayoutManager(manager);
 
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString(USERNAME, "");
+        for(ThumbDetail thumbDetail : accountNumber.getThumbsDetails().getThumbDetails()) {
+            if(username.equals(thumbDetail.getAccountNumber())) {
+                setThumb(thumbDetail.getThumb(), false);
+            }
+        }
+
+
         mask.setVisibility(GONE);
     }
 
@@ -121,7 +135,7 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     }
 
     @Override
-    public void setThumb(String thumb) {
+    public void setThumb(String thumb, boolean refreashView) {
         switch (thumb) {
             case "UP":
                 thumbUp.setColorFilter(Color.argb(255, 0, 240, 0));
@@ -132,6 +146,8 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
                 thumbDown.setColorFilter(Color.argb(255, 240, 0, 0));
                 break;
         }
+        if(refreashView)
+            refreshView();
     }
 
     private void setSearchView(){

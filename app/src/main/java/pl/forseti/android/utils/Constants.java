@@ -8,5 +8,6 @@ public class Constants {
 
     public static String PREFS = "prefs";
     public static String AUTHORIZATION = "prefs_authorization";
+    public static String USERNAME = "prefs_username";
 
 }

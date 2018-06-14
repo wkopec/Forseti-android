@@ -25,6 +25,10 @@ public class AccountNumber {
     @Expose
     private CommentsResponse comments;
 
+    @SerializedName("thumbsDetails")
+    @Expose
+    private ThumbsResponse thumbsDetails;
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -39,5 +43,9 @@ public class AccountNumber {
 
     public CommentsResponse getCommentsResponse() {
         return comments;
+    }
+
+    public ThumbsResponse getThumbsDetails() {
+        return thumbsDetails;
     }
 }

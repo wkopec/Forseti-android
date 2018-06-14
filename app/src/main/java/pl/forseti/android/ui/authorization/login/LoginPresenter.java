@@ -13,6 +13,7 @@ import retrofit2.Response;
 
 import static pl.forseti.android.utils.Constants.AUTHORIZATION;
 import static pl.forseti.android.utils.Constants.PREFS;
+import static pl.forseti.android.utils.Constants.USERNAME;
 
 /**
  * Created by Wojtek on 03.05.2018.
@@ -29,7 +30,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(LoginRequest account) {
+    public void login(final LoginRequest account) {
         ForsetiApi.service().login(account).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -39,6 +40,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString(AUTHORIZATION, loginResponse.getAuthorization());
+                        editor.putString(USERNAME, account.getUsername());
                         editor.apply();
                         view.showToast(R.string.logged_in_successfully);
                         view.proceedToLoggedIn();
