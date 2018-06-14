@@ -2,13 +2,18 @@
     <string name="app_name">Forseti</string>
     <string name="vote_sent">Vote has been sent</string>
     <string name="account_number">Bank account number</string>
-    <string name="search">Szukaj</string>
-    <string name="profile">Profil</string>
-    <string name="search_number">Szukaj numeru</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="search_number">Search for bank number</string>
     <string name="signed_up">Signed up successfully</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="user_already_exist">User already exist</string>
     <string name="invalid_username_or_password">Invalid username or password</string>
     <string name="logged_in_successfully">Logged in successfully</string>
     <string name="share">Share</string>
+
+    <string name="profile_comment_description">You have given comment to account number: %s</string>
+    <string name="profile_thumb_up_description">You have given thumbs up to account number: %s</string>
+    <string name="profile_thumb_down_description">You have given thumbs down to account number: %s</string>
+
 </resources>

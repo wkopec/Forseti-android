@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import butterknife.OnClick;
 import pl.forseti.android.R;
 import pl.forseti.android.models.Profile;
 import pl.forseti.android.ui.MainActivity;
+import pl.forseti.android.ui.account_number.CommentAdapter;
 import pl.forseti.android.ui.authorization.login.LoginFragment;
 
 import static pl.forseti.android.utils.Constants.AUTHORIZATION;
@@ -72,5 +74,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Override
     public void setUserData(Profile profile) {
         username.setText(profile.getUsername());
+
+        actionsRecyclerView.setAdapter(new ActionAdapter(profile.getProfileActions(), activity));
+        LinearLayoutManager manager = new LinearLayoutManager(activity);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        actionsRecyclerView.setLayoutManager(manager);
+
     }
 }
