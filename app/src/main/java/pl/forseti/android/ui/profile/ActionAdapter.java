@@ -1,6 +1,8 @@
 package pl.forseti.android.ui.profile;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +16,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.forseti.android.R;
 import pl.forseti.android.models.ProfileAction;
+import pl.forseti.android.ui.MainActivity;
 import pl.forseti.android.utils.ParseDate;
 
+import static pl.forseti.android.utils.Constants.LAST_ACCOUNT_NUMBER;
+import static pl.forseti.android.utils.Constants.PREFS;
 import static pl.forseti.android.utils.ParseDate.DATE_PATTERN_READABLE;
 
 public class ActionAdapter  extends RecyclerView.Adapter<ActionAdapter.ViewHolder>{
 
     private List<ProfileAction> profileActions;
-    private Context context;
+    private MainActivity activity;
 
-    public ActionAdapter(List<ProfileAction> profileActions, Context context) {
+    public ActionAdapter(List<ProfileAction> profileActions, MainActivity activity) {
         this.profileActions = profileActions;
-        this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -35,22 +40,34 @@ public class ActionAdapter  extends RecyclerView.Adapter<ActionAdapter.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.date.setText(ParseDate.dateToStringDate(profileActions.get(position).getDate(), DATE_PATTERN_READABLE));
         switch (profileActions.get(position).getType()) {
             case "COMMENT":
-                holder.description.setText(String.format(context.getString(R.string.profile_comment_description), profileActions.get(position).getAccountNumber()));
-                holder.icon.setBackground(context.getDrawable(R.drawable.ic_comments));
+                holder.description.setText(String.format(activity.getString(R.string.profile_comment_description), profileActions.get(position).getAccountNumber()));
+                holder.icon.setBackground(activity.getDrawable(R.drawable.ic_comments));
                 break;
             case "UP":
-                holder.description.setText(String.format(context.getString(R.string.profile_thumb_up_description), profileActions.get(position).getAccountNumber()));
-                holder.icon.setBackground(context.getDrawable(R.drawable.ic_thumb_up));
+                holder.description.setText(String.format(activity.getString(R.string.profile_thumb_up_description), profileActions.get(position).getAccountNumber()));
+                holder.icon.setBackground(activity.getDrawable(R.drawable.ic_thumb_up));
                 break;
             case "DOWN":
-                holder.description.setText(String.format(context.getString(R.string.profile_thumb_down_description), profileActions.get(position).getAccountNumber()));
-                holder.icon.setBackground(context.getDrawable(R.drawable.ic_thumb_down));
+                holder.description.setText(String.format(activity.getString(R.string.profile_thumb_down_description), profileActions.get(position).getAccountNumber()));
+                holder.icon.setBackground(activity.getDrawable(R.drawable.ic_thumb_down));
                 break;
         }
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(LAST_ACCOUNT_NUMBER, profileActions.get(position).getAccountNumber());
+                editor.apply();
+                activity.onBackPressed();
+            }
+        });
+
+
     }
 
     @Override
@@ -59,6 +76,9 @@ public class ActionAdapter  extends RecyclerView.Adapter<ActionAdapter.ViewHolde
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.item)
+        ConstraintLayout item;
 
         @BindView(R.id.description)
         TextView description;

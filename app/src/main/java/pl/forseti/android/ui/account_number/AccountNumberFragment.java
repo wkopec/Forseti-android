@@ -36,6 +36,7 @@ import pl.forseti.android.ui.profile.ProfileFragment;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static pl.forseti.android.utils.Constants.AUTHORIZATION;
+import static pl.forseti.android.utils.Constants.LAST_ACCOUNT_NUMBER;
 import static pl.forseti.android.utils.Constants.PREFS;
 import static pl.forseti.android.utils.Constants.USERNAME;
 
@@ -77,6 +78,7 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         setHasOptionsMenu(true);
         setSearchView();
         setNewCommentEditText();
+        setView();
         return view;
     }
 
@@ -119,10 +121,26 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
                 setThumb(thumbDetail.getThumb(), false);
             }
         }
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LAST_ACCOUNT_NUMBER, accountNumber.getAccountNumber());
+        editor.apply();
 
         mask.setVisibility(GONE);
     }
+
+    private void setView() {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        String accountNumber = sharedPreferences.getString(LAST_ACCOUNT_NUMBER, "");
+        if(!accountNumber.equals("")) {
+            presenter.getAccountNumberInfo(accountNumber);
+        }
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        setView();
+//    }
 
     @Override
     public void refreshView() {

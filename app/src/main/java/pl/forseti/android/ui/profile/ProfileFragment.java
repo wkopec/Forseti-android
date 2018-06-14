@@ -26,7 +26,9 @@ import pl.forseti.android.ui.account_number.CommentAdapter;
 import pl.forseti.android.ui.authorization.login.LoginFragment;
 
 import static pl.forseti.android.utils.Constants.AUTHORIZATION;
+import static pl.forseti.android.utils.Constants.LAST_ACCOUNT_NUMBER;
 import static pl.forseti.android.utils.Constants.PREFS;
+import static pl.forseti.android.utils.Constants.USERNAME;
 
 public class ProfileFragment extends Fragment implements ProfileContract.View {
 
@@ -58,8 +60,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(AUTHORIZATION, "");
+        editor.putString(USERNAME, "");
+        editor.putString(LAST_ACCOUNT_NUMBER, "");
         editor.apply();
-        activity.replaceFragment(new LoginFragment(), true);
+        activity.replaceFragment(new LoginFragment(), false);
     }
 
     private void setToolbar(){

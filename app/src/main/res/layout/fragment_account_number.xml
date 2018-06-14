@@ -172,8 +172,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:text="Search for an Bank Account number"
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:textSize="16sp" />
 
 </RelativeLayout>
 
