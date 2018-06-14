@@ -136,12 +136,6 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         }
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        setView();
-//    }
-
     @Override
     public void refreshView() {
         presenter.getAccountNumberInfo(accountNumber);
