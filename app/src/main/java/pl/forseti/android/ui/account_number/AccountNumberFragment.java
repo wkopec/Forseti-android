@@ -1,5 +1,6 @@
 package pl.forseti.android.ui.account_number;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +8,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,9 @@ import pl.forseti.android.R;
 import pl.forseti.android.models.AccountNumber;
 import pl.forseti.android.ui.MainActivity;
 import pl.forseti.android.ui.profile.ProfileFragment;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class AccountNumberFragment extends Fragment implements AccountNumberContract.View {
 
@@ -51,6 +58,8 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     ImageView thumbDown;
     @BindView(R.id.commentsRecyclerView)
     RecyclerView commentsRecyclerView;
+    @BindView(R.id.newComment)
+    EditText newComment;
 
     @Nullable
     @Override
@@ -62,6 +71,7 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         presenter = new AccountNumberPresenter(this);
         setHasOptionsMenu(true);
         setSearchView();
+        setNewCommentEditText();
         return view;
     }
 
@@ -73,6 +83,16 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
     @OnClick(R.id.thumbDown)
     public void onThumbDownClick() {
         presenter.sendVote(accountNumber, "DOWN");
+    }
+
+    @OnClick(R.id.comments)
+    public void onCommentsClick() {
+        if(newComment.getVisibility() == GONE) {
+            newComment.setVisibility(VISIBLE);
+        } else {
+            newComment.setVisibility(GONE);
+        }
+
     }
 
     @Override
@@ -87,7 +107,12 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         commentsRecyclerView.setLayoutManager(manager);
 
-        mask.setVisibility(View.GONE);
+        mask.setVisibility(GONE);
+    }
+
+    @Override
+    public void refreshView() {
+        presenter.getAccountNumberInfo(accountNumber);
     }
 
     @Override
@@ -130,6 +155,29 @@ public class AccountNumberFragment extends Fragment implements AccountNumberCont
 
             @Override
             public void onSearchViewClosed() {
+            }
+        });
+    }
+
+    private void setNewCommentEditText() {
+        newComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
+                if (event != null&& (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+
+                    View view = activity.getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                    presenter.sendComment(accountNumber, newComment.getText().toString());
+                    newComment.setVisibility(GONE);
+                    return true;
+
+                }
+                return false;
             }
         });
     }

@@ -1,11 +1,13 @@
 package pl.forseti.android.models;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Comparable<Comment> {
 
     private String username;
 
@@ -58,5 +60,10 @@ public class Comment {
 
     public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public int compareTo(@NonNull Comment o) {
+        return getTimeStamp().compareTo(o.getTimeStamp());
     }
 }

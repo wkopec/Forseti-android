@@ -18,6 +18,8 @@ public class AccountNumberContract {
 
         void setBankAccountInfo(AccountNumber accountNumber);
 
+        void refreshView();
+
         void showToast(int message);
 
         void setThumb(String thumb);

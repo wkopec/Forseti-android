@@ -1,156 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/searchBar"
-        layout="@layout/search_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/card_gradient"
-        app:layout_constraintTop_toBottomOf="@id/searchBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp">
-    </View>
+        <include
+            android:id="@+id/searchBar"
+            layout="@layout/search_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/BankName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bank name"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/card"
-        app:layout_constraintHorizontal_bias="0.00"
-        app:layout_constraintStart_toStartOf="@+id/card"
-        android:layout_margin="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/card" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/bankAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
-        android:text="00 0000 0000 0000 0000 0000 0000"
-        android:maxLines="1"
-        android:textColor="@color/gray_text"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/card"
-        app:layout_constraintEnd_toEndOf="@+id/card"
-        app:layout_constraintStart_toStartOf="@+id/card"
-        app:layout_constraintTop_toTopOf="@+id/card"
-        app:layout_constraintVertical_bias="0.68" />
+            <View
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/card_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/bankAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bank address"
-        android:layout_margin="10dp"
-        android:textColor="@color/gray_text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/card"
-        app:layout_constraintBottom_toBottomOf="@+id/card"/>
+            <TextView
+                android:id="@+id/BankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Bank name"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/card"
+                app:layout_constraintHorizontal_bias="0.00"
+                app:layout_constraintStart_toStartOf="@+id/card"
+                app:layout_constraintTop_toTopOf="@+id/card" />
 
-    <ImageView
-        android:id="@+id/thumbUp"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="12dp"
-        android:src="@drawable/ic_thumb_up"
-        app:layout_constraintTop_toBottomOf="@id/card"
-        app:layout_constraintStart_toStartOf="@id/card" />
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/bankAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="25dp"
+                android:paddingStart="25dp"
+                android:text="00 0000 0000 0000 0000"
+                android:textColor="@color/gray_text"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/card"
+                app:layout_constraintEnd_toEndOf="@+id/card"
+                app:layout_constraintStart_toStartOf="@+id/card"
+                app:layout_constraintTop_toTopOf="@+id/card"
+                app:layout_constraintVertical_bias="0.68" />
 
-    <TextView
-        android:id="@+id/thumbsUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="18sp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toEndOf="@id/thumbUp"
-        app:layout_constraintTop_toTopOf="@id/thumbUp"
-        app:layout_constraintBottom_toBottomOf="@+id/thumbUp"/>
+            <TextView
+                android:id="@+id/bankAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Bank address"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/card"
+                app:layout_constraintStart_toStartOf="@+id/card" />
 
-    <ImageView
-        android:id="@+id/thumbDown"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_thumb_down"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toEndOf="@id/thumbsUp"
-        app:layout_constraintTop_toBottomOf="@id/card" />
+        </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/comments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_marginTop="14dp"
-        android:gravity="center_vertical"
-        android:drawableStart="@drawable/ic_comments"
-        android:drawablePadding="5dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card" />
 
-    <TextView
-        android:id="@+id/share"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="14dp"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/ic_send"
-        android:text="@string/share"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="@id/card"
-        app:layout_constraintTop_toBottomOf="@id/card" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/commentsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/comments"
-        android:layout_margin="12dp"
-        android:layout_marginTop="20dp"/>
+            <ImageView
+                android:id="@+id/thumbUp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="14dp"
+                android:src="@drawable/ic_thumb_up" />
+
+            <TextView
+                android:id="@+id/thumbsUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
+                android:text="0"
+                android:layout_toRightOf="@+id/thumbUp"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/thumbDown"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/thumbsUp"
+                android:src="@drawable/ic_thumb_down" />
+
+            <TextView
+                android:id="@+id/comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_comments"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="14dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_send"
+                android:gravity="center_vertical"
+                android:text="@string/share"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/commentsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/newComment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="Type new comment"
+                android:padding="12dp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/mask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:layout_marginTop="?attr/actionBarSize"
-        android:text="Search for an Bank Account number"
+        android:background="@color/white"
         android:gravity="center"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar"
-        android:visibility="gone"/>
+        android:text="Search for an Bank Account number"
+        android:textSize="16sp" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
+
+
+
+
+

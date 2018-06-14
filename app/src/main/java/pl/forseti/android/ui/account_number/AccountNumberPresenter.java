@@ -67,12 +67,11 @@ public class AccountNumberPresenter implements AccountNumberContract.Presenter {
     @Override
     public void sendComment(String accountNumber, String comment) {
         SharedPreferences sharedPreferences = FirsetiApp.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        String auth = sharedPreferences.getString(AUTHORIZATION, "");
         ForsetiApi.service().sendComments(accountNumber, comment).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
-                    String l = "l";
+                    view.refreshView();
                     Log.d("SUCCESS", response.message());
                 }
             }
